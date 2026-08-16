@@ -7,7 +7,7 @@ The game opens as a normal tiled window, so it joins whatever layout you are alr
 ## Install
 
 ```sh
-omarchy plugin add https://github.com/your-user/omarchy-my-2048.git --enable
+omarchy plugin add https://github.com/nightdevil00/omarchy-my-2048.git --enable
 ```
 
 That clones the repo into `~/.config/omarchy/plugins/terminal.2048/`. Click the bar icon to open the panel, then Play. Or run the game directly:
@@ -16,14 +16,16 @@ That clones the repo into `~/.config/omarchy/plugins/terminal.2048/`. Click the 
 ~/.config/omarchy/plugins/terminal.2048/omarchy-2048
 ```
 
-## Usage
+## How to play
 
-Left click the bar icon for the panel. Right click starts a game. Escape closes the panel. `omarchy-shell shell summon terminal.2048` opens it the same way.
+1. **Pick a board size** in the menu — anything from 4×4 up to 8×8.
+2. **Move** the tiles with the arrow keys or WASD. Every move slides all tiles as far as they go in that direction.
+3. Two tiles with the **same value merge** into one tile worth their sum. A tile merges at most once per move.
+4. After every successful move a **new tile** (2, or 4 with a 10% chance) appears in a random empty cell.
+5. Reach **2048** to win. Keep playing for a higher score, or stop there.
+6. The game ends when no move can change the board.
 
-| Step | Action |
-|---|---|
-| **Pick size** | Choose 4×4 up to 8×8 in the menu |
-| **Play** | Join equal tiles, reach 2048 |
+Your **score** increases by the value of every tile you merge. The best score is tracked **per board size**.
 
 | Key | Action |
 |---|---|
@@ -32,7 +34,13 @@ Left click the bar icon for the panel. Right click starts a game. Escape closes 
 | p | Pause |
 | q / Esc | Menu, or quit from the menu |
 
-The board renders to fill the entire terminal, with each tile sized to the chosen grid so a 4×4 board shows huge tiles and an 8×8 board shows smaller ones. Tiles are colored by value and follow your theme. Best score is tracked per board size in `~/.local/share/omarchy-2048/scores.json`. Last size and "keep going" live in `~/.local/state/omarchy/2048.json`.
+The board renders to fill the entire terminal, with each tile sized to the chosen grid — a 4×4 board shows huge tiles, an 8×8 board shows smaller ones. Tiles are colored by value and follow your theme. Best scores live in `~/.local/share/omarchy-2048/scores.json`. Last size and "keep going" live in `~/.local/state/omarchy/2048.json`.
+
+## Menu
+
+Left click the bar icon for the panel. Right click starts a game. Escape closes the panel. `omarchy-shell shell summon terminal.2048` opens it the same way.
+
+In the panel you can choose the **board size** and toggle **keep going past 2048**, then hit Play.
 
 ## Configure
 
