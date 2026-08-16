@@ -2,6 +2,8 @@
 
 A small terminal **2048** for [Omarchy](https://omarchy.org/). The board follows the theme you already have selected and fills the whole screen. Pick a board size, then join the tiles to reach 2048.
 
+![preview](preview.png)
+
 The game opens as a normal tiled window, so it joins whatever layout you are already using. Move and resize it with your usual keys.
 
 ## Install
@@ -59,3 +61,7 @@ The game is Python 3 and the standard library. It does not open the network. It 
 ```sh
 omarchy plugin remove terminal.2048
 ```
+
+## License
+
+Released under the [MIT License](LICENSE).
