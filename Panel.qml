@@ -75,6 +75,15 @@ Panel {
     configFile.setText(payload)
   }
 
+  function cycleSize(dir) {
+    var idx = 0
+    for (var i = 0; i < sizeOptions.length; i++)
+      if (sizeOptions[i].value === root.size) idx = i
+    idx = (idx + dir + sizeOptions.length) % sizeOptions.length
+    root.size = sizeOptions[idx].value
+    root.persist()
+  }
+
   FileView {
     id: configFile
     path: root.configPath
@@ -103,6 +112,10 @@ Panel {
       onTabRequested: function(direction) { root.switchPanel(direction) }
       Keys.onReturnPressed: root.play()
       Keys.onEnterPressed: root.play()
+      Keys.onLeftPressed: root.cycleSize(-1)
+      Keys.onRightPressed: root.cycleSize(1)
+      Keys.onUpPressed: root.cycleSize(-1)
+      Keys.onDownPressed: root.cycleSize(1)
 
       Column {
         id: content
@@ -149,7 +162,7 @@ Panel {
             Button {
               width: (sizeRow.width - sizeRow.spacing * (sizeRepeater.count - 1)) / sizeRepeater.count
               text: modelData.label
-              foreground: root.contentForeground
+              foreground: root.size === modelData.value ? Color.accent : root.contentForeground
               fontFamily: root.contentFontFamily
               onClicked: {
                 root.size = modelData.value
