@@ -139,17 +139,23 @@ Panel {
           fontFamily: root.contentFontFamily
         }
 
-        ButtonGroup {
+        Row {
+          id: sizeRow
+          spacing: Style.space(6)
           width: parent.width
-          options: root.sizeOptions
-          value: root.size
-          foreground: root.contentForeground
-          background: root.bar ? root.bar.background : Color.background
-          accent: Color.accent
-          fontFamily: root.contentFontFamily
-          onChanged: function(next) {
-            root.size = next
-            root.persist()
+          Repeater {
+            id: sizeRepeater
+            model: root.sizeOptions
+            Button {
+              width: (sizeRow.width - sizeRow.spacing * (sizeRepeater.count - 1)) / sizeRepeater.count
+              text: modelData.label
+              foreground: root.contentForeground
+              fontFamily: root.contentFontFamily
+              onClicked: {
+                root.size = modelData.value
+                root.persist()
+              }
+            }
           }
         }
 
